@@ -16,7 +16,7 @@ describe('Process File', function () {
   });
 
   afterEach(async () => {
-    
+    console.log("finished");
   });
 
   it(`should throw error if input file is not specified`, async function () {
@@ -44,6 +44,16 @@ describe('Process File', function () {
       expect(err.message).to.be.include('Missing value: debtor');
     }
   });
+
+  //My Implementation:
+  it(`Working test: should throw error if debtor's value is empty ${filesDir}/output.csv`, async () => {
+    assert.throws(() => await processFile.processFile(`${filesDir}/invalid_debtor_modified.csv`, '../test/output.csv'),Error,
+    'Error: Missing value: debtor [row: 1] [row={"debtor":"","creditor":"Beatrice","debit":"12.80"}]');
+
+    // err = await processFile.processFile(`${filesDir}/invalid_debtor_modified.csv`, '../test/output.csv');
+    // assert(err.message,'Error: Missing value: debtor [row: 1] [row={"debtor":"","creditor":"Beatrice","debit":"12.80"}]');
+  });
+
 
   it(`should throw error if creditor's value is empty`, async function () {
 

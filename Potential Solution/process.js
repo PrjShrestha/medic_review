@@ -4,13 +4,24 @@ const fs = require('fs');
 const path = require('path');
 const { isEmpty } = require('lodash');
 
-const execute = () => {
-
+const execute = () => {  
   const files = getArgs();  
+  //Added for testing purpose
+  files.input = 'w:/Medic/App Developer Potential Solution/Potential Solution/users.csv';
   console.log(`processing ${files.input}...`);
 
   processFile(files.input, files.output);
 }
+// Hoist it here so that users can see how to use the app in case of error
+// const doc = `
+//   Usage:
+//     node process-file.js --filename=<input_file>.csv --output=<output_file>.csv
+
+//   Args:
+//       --filename                      The file to be processed
+//       --output                        The file in which to save the output. Defaults to output.csv if not specified
+//   `;
+// console.log(doc);
 
 const getArgs = () => {
   const usage = () => {
@@ -72,12 +83,12 @@ const processFile = (inputFile, outputFile) => {
         debtList.push(data);
       } else {
         debtListItem.debit += data.debit;
-      }
+      }     
     })
     .on('end', () => {
       debtList.sort(function (a, b) {
         if (a.debtor != b.debtor) {
-          return a.debtor.localeCompare(b.debtor);
+          return a.debtor.localeCompare(b.debtor); 
         }
         return a.creditor.localeCompare(b.creditor);
       });
@@ -99,4 +110,6 @@ module.exports = {
 }
 
 
-
+function delay(time) {
+  return new Promise(resolve => setTimeout(resolve, time));
+}
