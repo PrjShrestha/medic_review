@@ -1,0 +1,19 @@
+{
+  "name": "interview-project",
+  "version": "1.0.0",
+  "description": "",
+  "main": "process-file.js",
+  "scripts": {
+    "test": "mocha --timeout=4000"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "fast-csv": "^4.3.5",
+    "lodash": "^4.17.20",
+    "mocha": "^8.2.1",
+    "rewire": "^5.0.0",
+    "yargs": "^16.1.0"
+  }
+}
